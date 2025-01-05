@@ -1,6 +1,7 @@
 import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder
 import pandas as pd
+st.set_page_config(layout="wide")
 st.title("Magi-Cloud")
 st.write("Error Management System Minimal Demo")
 
