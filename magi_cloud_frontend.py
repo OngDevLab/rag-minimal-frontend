@@ -13,11 +13,11 @@ grid_builder = GridOptionsBuilder.from_dataframe(df)
 grid_builder.configure_selection(selection_mode="single", use_checkbox=True)
 grid_builder.configure_side_bar(filters_panel=True, columns_panel=False)
 grid_builder.configure_grid_options(autoHeight=True)
-grid_builder.configure_columns(['error_message', 'response','prompt','feedback'], wrapText=True, autoHeight=True, width=500)
+grid_builder.configure_columns(['error_message', 'response','prompt','feedback'], wrapText=True, autoHeight=True, width=420)
 grid_options = grid_builder.build()
 grid_return = AgGrid(data=df, gridOptions=grid_options, key='grid1', columns_auto_size_mode=ColumnsAutoSizeMode.FIT_ALL_COLUMNS_TO_VIEW)
 
 selected_row = grid_return['selected_rows']
 
-if selected_row:
-    st.write(selected_row)
+if selected_row is not None:
+    st.write("row selected")
