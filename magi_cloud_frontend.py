@@ -34,7 +34,7 @@ if selected_rows is not None:
             st.title("Error:")
             st.markdown(error_message)
             st.title("Enter Feedback:")
-            with st.form("feedback_form"):
+            with st.form(uuid):
                 text_input = st.text_input("Enter your feedback:")
                 submitted = st.form_submit_button("Submit feedback")
             if submitted:
