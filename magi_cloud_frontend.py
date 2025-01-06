@@ -7,7 +7,7 @@ st.title("Magi-Cloud")
 st.write("Error Management System Minimal Demo")
 
 conn = st.connection("postgresql", type="sql")
-df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="10m")
+df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="60")
 
 
 
@@ -49,7 +49,6 @@ if selected_rows is not None:
                 write_conn.close()
 
                 st.write("updated feedback")
-                st.experimental_rerun()
         with response_col:
             st.write(response)
             st.markdown("---")
