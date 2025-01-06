@@ -76,11 +76,11 @@ if selected_rows is not None:
                 st.write(response.text)
 
                 st.write("updated feedback")
-                df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="60")
-            st.markdown("---")
-            st.title("Feedback:")
-            st.write(feedback)
+                st.rerun()
+
         with response_col:
             st.title("LLM Response")
             st.write(response)
-
+            st.markdown("---")
+            st.title("Feedback:")
+            st.write(feedback)
