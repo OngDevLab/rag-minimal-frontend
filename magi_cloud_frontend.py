@@ -7,7 +7,7 @@ st.title("Magi-Cloud")
 st.write("Error Management System Minimal Demo")
 
 conn = st.connection("postgresql", type="sql")
-df = conn.query('SELECT error_message, response, prompt, feedback FROM public.magi_kb;', ttl="10m")
+df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="10m")
 
 grid_builder = GridOptionsBuilder.from_dataframe(df)
 grid_builder.configure_selection(selection_mode="multiple", use_checkbox=True)
