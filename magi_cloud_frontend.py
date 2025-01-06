@@ -6,9 +6,16 @@ st.set_page_config(layout="wide")
 st.title("Magi-Cloud")
 st.write("Error Management System Minimal Demo")
 
-conn = st.connection("postgresql", type="sql")
-df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="10m")
+# conn = st.connection("postgresql", type="sql")
+# df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="10m")
+@st.cache(ttl=600)  # Cache for 10 minutes
+def get_data():
+    conn = st.connection("postgresql", type="sql")
+    df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;')
+    return df
 
+
+df = get_data()  # Initial fetch
 grid_builder = GridOptionsBuilder.from_dataframe(df)
 grid_builder.configure_selection(selection_mode="multiple", use_checkbox=True)
 grid_builder.configure_side_bar(filters_panel=True, columns_panel=False)
@@ -47,6 +54,7 @@ if selected_rows is not None:
                 write_conn.close()
 
                 st.write("updated feedback")
+                df.clear()
         with response_col:
             st.write(response)
             st.markdown("---")
