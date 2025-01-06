@@ -37,7 +37,7 @@ if selected_rows is not None:
                 write_conn = psycopg2.connect(
                     host = st.secrets['connections']['postgresql']['host'],
                     database = st.secrets['connections']['postgresql']['database'],
-                    user = st.secrets['connections']['postgresql']['user'],
+                    user = st.secrets['connections']['postgresql']['username'],
                     password = st.secrets['connections']['postgresql']['password']
                 )
                 write_cur = write_conn.cursor()
