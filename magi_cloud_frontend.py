@@ -33,7 +33,6 @@ if selected_rows is not None:
                 submitted = st.form_submit_button("Submit feedback")
             if submitted:
                 st.write("You entered:", text_input)
-                data = conn.query(f'SELECT error_message, response, prompt, feedback FROM public.magi_kb WHERE id = {uuid};')
-                st.dataframe(data)
+                st.write(f'SELECT error_message, response, prompt, feedback FROM public.magi_kb WHERE id = {uuid};')
         with response_col:
             st.write(response)
