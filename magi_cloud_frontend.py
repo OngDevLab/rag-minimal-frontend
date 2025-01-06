@@ -34,7 +34,8 @@ if selected_rows is not None:
                 submitted = st.form_submit_button("Submit feedback")
             if submitted:
                 st.write("You entered:", text_input)
-                conn.query(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
+                st.write(st.secrets['connections.postgresql']['dialect'])
+                #conn.query(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
                 #st.dataframe(data)
                 st.write("updated feedback")
         with response_col:
