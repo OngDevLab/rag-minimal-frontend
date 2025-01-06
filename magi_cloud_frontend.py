@@ -41,8 +41,8 @@ if selected_rows is not None:
                     password = st.secrets['connections']['postgresql']['password']
                 )
                 write_cur = write_conn.cursor()
-                # write_cur.execute(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
-                # write_conn.commit()
+                write_cur.execute(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
+                write_conn.commit()
                 write_cur.close()
                 write_conn.close()
 
