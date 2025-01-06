@@ -35,6 +35,6 @@ if selected_rows is not None:
                 st.write("You entered:", text_input)
                 #data = conn.query(f"SELECT error_message, response, prompt, feedback FROM public.magi_kb WHERE id = '{uuid}';")
                 #st.dataframe(data)
-                st.write(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}")
+                st.write(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}'")
         with response_col:
             st.write(response)
