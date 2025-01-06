@@ -1,6 +1,6 @@
 import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder, ColumnsAutoSizeMode
-import pandas as pd
+import psycopg2
 
 st.set_page_config(layout="wide")
 st.title("Magi-Cloud")
@@ -34,9 +34,16 @@ if selected_rows is not None:
                 submitted = st.form_submit_button("Submit feedback")
             if submitted:
                 st.write("You entered:", text_input)
-                st.write(st.secrets['connections']['postgresql']['dialect'])
-                #conn.query(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
-                #st.dataframe(data)
+                write_conn = psycopg2.connect(
+                    host = st.secrets['connections']['postgresql']['host'],
+                    database = st.secrets['connections']['postgresql']['database'],
+                    user = st.secrets['connections']['postgresql']['user'],
+                    password = st.secrets['connections']['postgresql']['password']
+                )
+                write_cur = write_conn.cursor()
+                write_cur.execute(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
+                write_cur.close()
+                write_conn.close()
                 st.write("updated feedback")
         with response_col:
             st.write(response)
