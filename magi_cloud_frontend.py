@@ -11,7 +11,6 @@ df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as u
 
 
 
-df = get_data()  # Initial fetch
 grid_builder = GridOptionsBuilder.from_dataframe(df)
 grid_builder.configure_selection(selection_mode="multiple", use_checkbox=True)
 grid_builder.configure_side_bar(filters_panel=True, columns_panel=False)
