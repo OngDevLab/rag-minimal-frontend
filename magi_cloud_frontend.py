@@ -34,16 +34,16 @@ if selected_rows is not None:
                 submitted = st.form_submit_button("Submit feedback")
             if submitted:
                 st.write("You entered:", text_input)
-                write_conn = psycopg2.connect(
-                    host = st.secrets['connections']['postgresql']['host'],
-                    database = st.secrets['connections']['postgresql']['database'],
-                    user = st.secrets['connections']['postgresql']['username'],
-                    password = st.secrets['connections']['postgresql']['password']
-                )
-                write_cur = write_conn.cursor()
-                write_cur.execute(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
-                write_cur.close()
-                write_conn.close()
+                # write_conn = psycopg2.connect(
+                #     host = st.secrets['connections']['postgresql']['host'],
+                #     database = st.secrets['connections']['postgresql']['database'],
+                #     user = st.secrets['connections']['postgresql']['username'],
+                #     password = st.secrets['connections']['postgresql']['password']
+                # )
+                # write_cur = write_conn.cursor()
+                # write_cur.execute(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
+                # write_cur.close()
+                # write_conn.close()
                 st.write("updated feedback")
         with response_col:
             st.write(response)
