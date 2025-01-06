@@ -30,7 +30,9 @@ if selected_rows is not None:
         feedback = row['feedback']
         uuid = row['uuid']
         with error_col:
+            st.title("Error:")
             st.markdown(error_message)
+            st.title("Enter Feedback:")
             with st.form(uuid):
                 text_input = st.text_input("Enter your feedback:")
                 submitted = st.form_submit_button("Submit feedback")
@@ -51,6 +53,8 @@ if selected_rows is not None:
 
                 st.write("updated feedback")
         with response_col:
+            st.title("LLM Response")
             st.write(response)
             st.markdown("---")
+            st.title("Feedback:")
             st.write(feedback)
