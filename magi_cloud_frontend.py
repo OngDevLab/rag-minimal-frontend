@@ -21,7 +21,7 @@ selected_rows = grid_return['selected_rows']
 
 if selected_rows is not None:
     for index, row in selected_rows.iterrows():
-        st.write("\n\n\n")
+        st.markdown("---")
         error_col, response_col = st.columns([1,1])
         error_message = row['error_message']
         response = row['response']
