@@ -25,6 +25,7 @@ if selected_rows is not None:
         error_col, response_col = st.columns([1,1])
         error_message = row['error_message']
         response = row['response']
+        feedback = row['feedback']
         uuid = row['uuid']
         with error_col:
             st.markdown(error_message)
@@ -33,8 +34,10 @@ if selected_rows is not None:
                 submitted = st.form_submit_button("Submit feedback")
             if submitted:
                 st.write("You entered:", text_input)
-                #data = conn.query(f"SELECT error_message, response, prompt, feedback FROM public.magi_kb WHERE id = '{uuid}';")
+                conn.query(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
                 #st.dataframe(data)
-                st.write(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}'")
+                st.write("updated feedback")
         with response_col:
             st.write(response)
+            st.markdown("---")
+            st.write(feedback)
