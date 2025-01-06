@@ -8,7 +8,7 @@ st.write("Error Management System Minimal Demo")
 
 # conn = st.connection("postgresql", type="sql")
 # df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="10m")
-@st.cache(ttl=600)  # Cache for 10 minutes
+@st.cache_data(ttl=600)  # Cache for 10 minutes
 def get_data():
     conn = st.connection("postgresql", type="sql")
     df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;')
