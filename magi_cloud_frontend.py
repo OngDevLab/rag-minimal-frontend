@@ -29,9 +29,11 @@ if selected_rows is not None:
         with error_col:
             st.markdown(error_message)
             with st.form(uuid):
-                text_input = st.text_input("Enter your text:")
-                submitted = st.form_submit_button("Submit")
+                text_input = st.text_input("Enter your feedback:")
+                submitted = st.form_submit_button("Submit feedback")
             if submitted:
                 st.write("You entered:", text_input)
+                data = conn.query(f'SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb WHERE id = {uuid};', ttl="1m")
+                st.dataframe(data)
         with response_col:
             st.write(response)
