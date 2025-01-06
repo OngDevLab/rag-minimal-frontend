@@ -39,23 +39,10 @@ if selected_rows is not None:
                 submitted = st.form_submit_button("Submit feedback")
             if submitted:
                 st.write("You entered:", text_input)
-                # text_input = text_input.replace(",", " ")
-                # write_conn = psycopg2.connect(
-                #     host = st.secrets['connections']['postgresql']['host'],
-                #     database = st.secrets['connections']['postgresql']['database'],
-                #     user = st.secrets['connections']['postgresql']['username'],
-                #     password = st.secrets['connections']['postgresql']['password']
-                # )
-                # write_cur = write_conn.cursor()
-                # write_cur.execute(f"UPDATE public.magi_kb SET feedback = '{text_input}' WHERE id = '{uuid}';")
-                # write_conn.commit()
-                # write_cur.close()
-                # write_conn.close()
-                # Define the URL of the function
+
                 url = "https://x7fyoha7quuo4zr2tv47dd4oai0kjejs.lambda-url.us-east-1.on.aws/"
 
                 # Define the data to be sent in the POST request
-                host = "nervously-brilliant-carp.data-1.use1.tembo.io"
                 data = {
                     "host": st.secrets['connections']['postgresql']['host'],
                     "database": st.secrets['connections']['postgresql']['database'],
