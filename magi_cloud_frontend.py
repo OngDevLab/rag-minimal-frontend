@@ -10,7 +10,7 @@ conn = st.connection("postgresql", type="sql")
 df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="10m")
 
 grid_builder = GridOptionsBuilder.from_dataframe(df)
-grid_builder.configure_selection(selection_mode="single", use_checkbox=True)
+grid_builder.configure_selection(selection_mode="multiple", use_checkbox=True)
 grid_builder.configure_side_bar(filters_panel=True, columns_panel=False)
 grid_builder.configure_grid_options(autoHeight=True)
 grid_builder.configure_columns(['error_message', 'response','prompt','feedback','uuid'], wrapText=True, autoHeight=True, width=420)
@@ -25,9 +25,10 @@ if selected_rows is not None:
         error_col, response_col = st.columns([1,1])
         error_message = row['error_message']
         response = row['response']
+        uuid = row['uuid']
         with error_col:
             st.markdown(error_message)
-            with st.form("my_form"):
+            with st.form(uuid):
                 text_input = st.text_input("Enter your text:")
                 submitted = st.form_submit_button("Submit")
             if submitted:
