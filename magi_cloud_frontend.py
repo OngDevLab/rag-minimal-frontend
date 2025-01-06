@@ -69,12 +69,15 @@ if selected_rows is not None:
                 response = requests.post(url, json=data)
 
                 # Print the status code of the response
+                st.write("your changes are now in the database")
                 st.write(response.status_code)
 
                 # Print the response content
                 st.write(response.text)
 
                 st.write("updated feedback")
+                df = conn.query('SELECT error_message, response, prompt, feedback, id::TEXT as uuid FROM public.magi_kb;', ttl="60")
+
         with response_col:
             st.title("LLM Response")
             st.write(response)
