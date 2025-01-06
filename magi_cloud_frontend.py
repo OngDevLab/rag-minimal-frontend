@@ -27,5 +27,10 @@ if selected_rows is not None:
         response = row['response']
         with error_col:
             st.markdown(error_message)
+            with st.form("my_form"):
+                text_input = st.text_input("Enter your text:")
+                submitted = st.form_submit_button("Submit")
+            if submitted:
+                st.write("You entered:", text_input)
         with response_col:
             st.write(response)
